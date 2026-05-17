@@ -26,8 +26,9 @@ window = display.set_mode((win_width, win_height))
 display.set_caption("PingPong")
 background = transform.scale(image.load("galaxy.jpg"), (win_width, win_height))
 
-player1 = Player("ракетка без фона.png", 5, win_height - 80, 4)
-player2 = Player("ракетка без фона правый.png", win_width - 80, 280, 2)
+player1 = Player("raket1.png", 5, win_height - 80, 4)
+player2 = Player("raket2.png", win_width - 80, 280, 2)
+ball55 = Ball("ball-no-bg-preview (carve.photos).png")
 
 game = True
 finish = False
@@ -41,9 +42,16 @@ while game:
            game = False
 
     if finish != True:
-        if sprite.collide_rect(player1, player2):
-            window.blit(win, (200, 200))
-            finish = True
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+
+    if ball.rect.y > win_height - 50
+        or ball.rect.y < 0:
+            speed_y *= -1
+
+    if sprite.collide_rect(player1, player2):
+        window.blit(win, (200, 200))
+        finish = True
 
         window.blit(background, (0, 0))
         player1.update()
